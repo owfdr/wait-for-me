@@ -1,7 +1,8 @@
+import { nanoid } from "nanoid";
 import React, { useEffect } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import { Category, Record } from "../class/Store";
-import { nanoid } from "nanoid";
+
+import { Category } from "../class/Store";
 
 export default function Record() {
   const { pathname, state } = useLocation();
@@ -49,8 +50,8 @@ export default function Record() {
   }, [name]);
 
   return (
-    <div className="p-3 pt-10 max-w-sm mx-auto">
-      <h1 className="text-3xl mb-10 ">{isAdd ? "Add" : "Edit"} Record</h1>
+    <div className="mx-auto max-w-sm p-3 pt-10">
+      <h1 className="mb-10 text-3xl ">{isAdd ? "Add" : "Edit"} Record</h1>
 
       <form
         onSubmit={async (event) => {
@@ -86,7 +87,7 @@ export default function Record() {
             state: { password },
           });
         }}
-        className="flex flex-col gap-4 p-3 max-w-xl mx-auto"
+        className="mx-auto flex max-w-xl flex-col gap-4 p-3"
       >
         <input
           type="text"
@@ -127,7 +128,7 @@ export default function Record() {
             setEdited(true);
           }}
         />
-        <div className="p-3 flex gap-3 text-xl">
+        <div className="flex gap-3 p-3 text-xl">
           <label htmlFor="bad">
             👎
             <input
@@ -161,14 +162,14 @@ export default function Record() {
         <button
           type="submit"
           disabled={!edited || isDuplicated || !name}
-          className="p-3 bg-blue-500 text-white hover:bg-blue-600 rounded disabled:opacity-50 disabled:hover:bg-blue-500 transition duration-150 ease-in-out"
+          className="rounded bg-blue-500 p-3 text-white transition duration-150 ease-in-out hover:bg-blue-600 disabled:opacity-50 disabled:hover:bg-blue-500"
         >
           {isAdd ? "Add" : "Update"}
         </button>
         <Link
           to={"/categories/" + category_id + "/records"}
           state={{ password }}
-          className="p-3 block text-center bg-gray-300 text-gray-700 hover:bg-gray-400 rounded transition duration-150 ease-in-out"
+          className="block rounded bg-gray-300 p-3 text-center text-gray-700 transition duration-150 ease-in-out hover:bg-gray-400"
         >
           Cancel
         </Link>
@@ -176,7 +177,7 @@ export default function Record() {
         <button
           type="submit"
           hidden={isAdd}
-          className="p-3  text-red-500 border border-white hover:border-red-600 rounded mt-5 duration-150 ease-in-out disabled:opacity-50 disabled:hover:border-white"
+          className="mt-5  rounded border border-white p-3 text-red-500 duration-150 ease-in-out hover:border-red-600 disabled:opacity-50 disabled:hover:border-white"
           onClick={async (event) => {
             event.preventDefault();
             if (!window.confirm("Are you sure to delete this record?")) return;

@@ -1,4 +1,5 @@
-import { app, BrowserWindow, ipcMain, shell } from "electron";
+import { BrowserWindow, app, ipcMain, shell } from "electron";
+
 import Store from "./class/Store";
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;

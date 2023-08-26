@@ -1,9 +1,10 @@
-import { ElectronHandler } from "./preload";
+import React from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
-import React from "react";
-import "./index.css";
+
 import Router from "./class/Router";
+import "./index.css";
+import { ElectronHandler } from "./preload";
 
 declare global {
   interface Window {

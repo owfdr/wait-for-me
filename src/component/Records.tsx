@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
+
 import { Category, Record } from "../class/Store";
 
 export default function Records() {
@@ -94,16 +95,16 @@ export default function Records() {
   if (locked)
     return (
       <div className="p-10">
-        <h1 className="text-3xl mb-10">
+        <h1 className="mb-10 text-3xl">
           <Link to="/">{category.name}</Link>
           <span> 🔒</span>
         </h1>
 
-        <div className="pt-10 max-w-sm mx-auto">
-          <p className="mt-10 mb-1">Enter your Password to unlock:</p>
+        <div className="mx-auto max-w-sm pt-10">
+          <p className="mb-1 mt-10">Enter your Password to unlock:</p>
           <input
             type="password"
-            className="p-2 border rounded w-full"
+            className="w-full rounded border p-2"
             onChange={(event) => {
               if (event.target.value === password) {
                 setLocked(false);
@@ -151,15 +152,15 @@ export default function Records() {
       </div> */}
 
       <div className="p-10">
-        <h1 className="text-3xl mb-10">
+        <h1 className="mb-10 text-3xl">
           <Link to="/">{category.name}</Link>
           <span>{password && " 🔓"}</span>
         </h1>
-        <div className="flex gap-4 p-3 flex-wrap mx-auto w-full">
+        <div className="mx-auto flex w-full flex-wrap gap-4 p-3">
           {records.map((record) => (
             <div
               key={record.id}
-              className={`p-4 overflow-hidden rounded-xl w-96 text-gray-900 transition duration-150 ease-in-out ${
+              className={`w-96 overflow-hidden rounded-xl p-4 text-gray-900 transition duration-150 ease-in-out ${
                 record.stage === 2 && "opacity-50"
               } ${
                 record.stage === 1 && "bg-gray-200 shadow-lg shadow-gray-100"
@@ -169,7 +170,7 @@ export default function Records() {
                 href={record.sourceUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="block rounded-lg overflow-hidden hover:shadow-md transition duration-150 ease-in-out"
+                className="block overflow-hidden rounded-lg transition duration-150 ease-in-out hover:shadow-md"
                 onClick={(event) => {
                   event.preventDefault();
                   window.electron.openUrl(record.sourceUrl);
@@ -178,17 +179,17 @@ export default function Records() {
                 <img
                   src={record.imageUrl}
                   alt={record.name}
-                  className="max-w-md mx-auto h-60 overflow-hidden rounded-lg"
+                  className="mx-auto h-60 max-w-md overflow-hidden rounded-lg"
                 />
               </a>
-              <div className="flex mt-2 overflow-hidden">
+              <div className="mt-2 flex overflow-hidden">
                 <div className="overflow-hidden">
-                  <div className="overflow-hidden flex">
-                    <p className="font-medium inline-block truncate">
+                  <div className="flex overflow-hidden">
+                    <p className="inline-block truncate font-medium">
                       {record.name}
                     </p>
                     <Link
-                      className="text-gray-400 font-bold text-sm hover:text-gray-500 mb-auto ml-3 transition duration-150 ease-out"
+                      className="mb-auto ml-3 text-sm font-bold text-gray-400 transition duration-150 ease-out hover:text-gray-500"
                       to={`_edit_/${record.id}`}
                       state={{ password }}
                     >
@@ -227,7 +228,7 @@ export default function Records() {
                 {record.stage < 2 && (
                   <button
                     type="button"
-                    className="rounded-lg font-medium px-2 py-1 mt-auto mb-1 ml-auto text-blue-500 hover:bg-blue-500 hover:text-white transition duration-150 ease-out"
+                    className="mb-1 ml-auto mt-auto rounded-lg px-2 py-1 font-medium text-blue-500 transition duration-150 ease-out hover:bg-blue-500 hover:text-white"
                     onClick={async (event) => {
                       event.preventDefault();
                       await window.electron.updateRecord({
@@ -246,7 +247,7 @@ export default function Records() {
           <div className="flex flex-wrap gap-4">
             <div
               key="add"
-              className=" rounded p-3 px-4 text-center border border-gray-100"
+              className=" rounded border border-gray-100 p-3 px-4 text-center"
             >
               <Link to="_add_" state={{ password }}>
                 ➕

@@ -1,4 +1,5 @@
 import { contextBridge, ipcRenderer } from "electron";
+
 import { Category, Record } from "./class/Store";
 
 const electronHandler = {

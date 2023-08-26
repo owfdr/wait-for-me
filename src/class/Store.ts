@@ -88,7 +88,8 @@ export default class Store {
 
   isCategoryNameDuplicated(id: string, name: string) {
     return this.getCategories().some(
-      (each) => each.id !== id && each.name.toLowerCase() === name.toLowerCase()
+      (each) =>
+        each.id !== id && each.name.toLowerCase() === name.toLowerCase(),
     );
   }
 
@@ -100,15 +101,15 @@ export default class Store {
     this.store.set(
       "categories",
       this.getCategories().map((category) =>
-        category.id === newCategory.id ? newCategory : category
-      )
+        category.id === newCategory.id ? newCategory : category,
+      ),
     );
   }
 
   removeCategory(id: string) {
     this.store.set(
       "categories",
-      this.getCategories().filter((category) => category.id !== id)
+      this.getCategories().filter((category) => category.id !== id),
     );
   }
 
@@ -116,7 +117,7 @@ export default class Store {
     const category = this.getCategory(id);
 
     return this.getRecords().some(
-      (record) => record.categoryId === category.id
+      (record) => record.categoryId === category.id,
     );
   }
 
@@ -136,7 +137,7 @@ export default class Store {
     const category = this.getCategory(id);
 
     return this.getRecords().filter(
-      (record) => record.categoryId === category.id
+      (record) => record.categoryId === category.id,
     );
   }
 
@@ -147,21 +148,21 @@ export default class Store {
   updateRecord(record: Record) {
     this.store.set(
       "records",
-      this.getRecords().map((each) => (each.id === record.id ? record : each))
+      this.getRecords().map((each) => (each.id === record.id ? record : each)),
     );
   }
 
   deleteRecord(id: string) {
     this.store.set(
       "records",
-      this.getRecords().filter((record) => record.id !== id)
+      this.getRecords().filter((record) => record.id !== id),
     );
   }
 
   isRecordNameDuplicated(id: string, name: string) {
     return this.getRecords().some(
       (record) =>
-        record.id !== id && record.name.toLowerCase() === name.toLowerCase()
+        record.id !== id && record.name.toLowerCase() === name.toLowerCase(),
     );
   }
 
@@ -169,19 +170,19 @@ export default class Store {
     ipcMain.handle("getCategories", () => this.getCategories());
     ipcMain.handle("getCategory", (_, id: string) => this.getCategory(id));
     ipcMain.handle("isCategoryNameDuplicated", (_, id: string, name: string) =>
-      this.isCategoryNameDuplicated(id, name)
+      this.isCategoryNameDuplicated(id, name),
     );
     ipcMain.handle("addCategory", (_, newCategory: Category) =>
-      this.addCategory(newCategory)
+      this.addCategory(newCategory),
     );
     ipcMain.handle("updateCategory", (_, newCategory: Category) =>
-      this.updateCategory(newCategory)
+      this.updateCategory(newCategory),
     );
     ipcMain.handle("removeCategory", (_, id: string) =>
-      this.removeCategory(id)
+      this.removeCategory(id),
     );
     ipcMain.handle("doesCategoryHaveRecords", (_, id: string) =>
-      this.doesCategoryHaveRecords(id)
+      this.doesCategoryHaveRecords(id),
     );
     ipcMain.handle("getTags", () => this.getTags());
     ipcMain.handle("getRecords", () => this.getRecords());
@@ -191,11 +192,11 @@ export default class Store {
     });
     ipcMain.handle("addRecord", (_, record: Record) => this.addRecord(record));
     ipcMain.handle("updateRecord", (_, record: Record) =>
-      this.updateRecord(record)
+      this.updateRecord(record),
     );
     ipcMain.handle("deleteRecord", (_, id: string) => this.deleteRecord(id));
     ipcMain.handle("isRecordNameDuplicated", (_, id: string, name: string) =>
-      this.isRecordNameDuplicated(id, name)
+      this.isRecordNameDuplicated(id, name),
     );
   }
 }

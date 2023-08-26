@@ -39,8 +39,8 @@ export default function Category() {
   }, [name]);
 
   return (
-    <div className="p-3 pt-10 max-w-sm mx-auto">
-      <h1 className="text-3xl mb-10 ">{isAdd ? "Add" : "Edit"} Category</h1>
+    <div className="mx-auto max-w-sm p-3 pt-10">
+      <h1 className="mb-10 text-3xl ">{isAdd ? "Add" : "Edit"} Category</h1>
       <form
         className="flex flex-col gap-4"
         onSubmit={async (event) => {
@@ -66,7 +66,7 @@ export default function Category() {
         <input
           type="text"
           placeholder="name"
-          className="block p-3 border rounded"
+          className="block rounded border p-3"
           value={name}
           onChange={(event) => {
             setName(event.target.value);
@@ -79,7 +79,7 @@ export default function Category() {
         <input
           type="password"
           placeholder="password (optional)"
-          className="block p-3 border rounded"
+          className="block rounded border p-3"
           value={password}
           onChange={(event) => {
             setPassword(event.target.value);
@@ -89,18 +89,18 @@ export default function Category() {
         <button
           type="submit"
           disabled={!edited || isDuplicated || !name}
-          className="p-3 bg-blue-500 text-white hover:bg-blue-600 rounded disabled:opacity-50 disabled:hover:bg-blue-500 transition duration-150 ease-in-out"
+          className="rounded bg-blue-500 p-3 text-white transition duration-150 ease-in-out hover:bg-blue-600 disabled:opacity-50 disabled:hover:bg-blue-500"
         >
           {isAdd ? "Add" : "Update"}
         </button>
         <Link
           to="/categories"
-          className="p-3 block text-center bg-gray-300 text-gray-700 hover:bg-gray-400 rounded transition duration-150 ease-in-out"
+          className="block rounded bg-gray-300 p-3 text-center text-gray-700 transition duration-150 ease-in-out hover:bg-gray-400"
         >
           Cancel
         </Link>
         <button
-          className="p-3  text-red-500 border border-white hover:border-red-600 rounded mt-5 duration-150 ease-in-out disabled:opacity-50 disabled:hover:border-white"
+          className="mt-5  rounded border border-white p-3 text-red-500 duration-150 ease-in-out hover:border-red-600 disabled:opacity-50 disabled:hover:border-white"
           hidden={isAdd}
           disabled={!safeToDelete}
           onClick={async (event) => {
@@ -113,7 +113,7 @@ export default function Category() {
         >
           Delete
         </button>
-        <p className="text-red-300 text-sm text-center" hidden={isAdd}>
+        <p className="text-center text-sm text-red-300" hidden={isAdd}>
           {!safeToDelete &&
             "You must remove all the records before deleting it"}
         </p>

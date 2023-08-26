@@ -1,9 +1,10 @@
+import React from "react";
 import { createHashRouter, redirect } from "react-router-dom";
-import Records from "../component/Records";
-import Record from "../component/Record";
+
 import Categories from "../component/Categories";
 import Category from "../component/Category";
-import React from "react";
+import Record from "../component/Record";
+import Records from "../component/Records";
 
 export default class Router {
   static createHash() {
