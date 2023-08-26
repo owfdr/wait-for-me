@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 
 import { Category, Record } from "../class/Store";
+import Grid from "../ui/Grid";
+import Layout from "../ui/Layout";
 
 export default function Records() {
   const { state } = useLocation();
@@ -116,7 +118,7 @@ export default function Records() {
     );
 
   return (
-    <div className="">
+    <Layout title={category.name + (password && " 🔓")} to="/">
       {/* <div className="border-b flex">
         <input
           type="text"
@@ -151,111 +153,93 @@ export default function Records() {
         </button>
       </div> */}
 
-      <div className="p-10">
-        <h1 className="mb-10 text-3xl">
-          <Link to="/">{category.name}</Link>
-          <span>{password && " 🔓"}</span>
-        </h1>
-        <div className="mx-auto flex w-full flex-wrap gap-4 p-3">
-          {records.map((record) => (
-            <div
-              key={record.id}
-              className={`w-96 overflow-hidden rounded-xl p-4 text-gray-900 transition duration-150 ease-in-out ${
-                record.stage === 2 && "opacity-50"
-              } ${
-                record.stage === 1 && "bg-gray-200 shadow-lg shadow-gray-100"
-              }`}
+      <Grid state={{ password }}>
+        {records.map((record) => (
+          <div
+            key={record.id}
+            className={`m-3 overflow-hidden rounded-xl p-3 text-gray-900 transition duration-150 ease-in-out ${
+              record.stage === 2 && "opacity-50"
+            } ${record.stage === 1 && "bg-gray-200 shadow-lg shadow-gray-100"}`}
+          >
+            <a
+              href={record.sourceUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="block overflow-hidden rounded-lg transition duration-150 ease-in-out hover:shadow-md"
+              onClick={(event) => {
+                event.preventDefault();
+                window.electron.openUrl(record.sourceUrl);
+              }}
             >
-              <a
-                href={record.sourceUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="block overflow-hidden rounded-lg transition duration-150 ease-in-out hover:shadow-md"
-                onClick={(event) => {
-                  event.preventDefault();
-                  window.electron.openUrl(record.sourceUrl);
-                }}
-              >
-                <img
-                  src={record.imageUrl}
-                  alt={record.name}
-                  className="mx-auto h-60 max-w-md overflow-hidden rounded-lg"
-                />
-              </a>
-              <div className="mt-2 flex overflow-hidden">
-                <div className="overflow-hidden">
-                  <div className="flex overflow-hidden">
-                    <p className="inline-block truncate font-medium">
-                      {record.name}
-                    </p>
-                    <Link
-                      className="mb-auto ml-3 text-sm font-bold text-gray-400 transition duration-150 ease-out hover:text-gray-500"
-                      to={`_edit_/${record.id}`}
-                      state={{ password }}
-                    >
-                      ...
-                    </Link>
-                  </div>
-                  <div>
-                    <button
-                      type="button"
-                      className={`inline-block text-sm text-gray-500 ${
-                        record.stage === 1 && "animate-pulse"
-                      }`}
-                      onClick={async (event) => {
-                        event.preventDefault();
-                        if (record.stage < 2) {
-                          await window.electron.updateRecord({
-                            ...record,
-                            stage: record.stage + 1,
-                          } as Record);
-                        } else {
-                          await window.electron.updateRecord({
-                            ...record,
-                            stage: 0,
-                          } as Record);
-                        }
-                        setRefresh((prev) => prev + 1);
-                      }}
-                    >
-                      {whichStage(record.stage)}
-                    </button>
-                    <span className="ml-2 text-sm">
-                      {whichUpvote(record.upvote)}
-                    </span>
-                  </div>
+              <img
+                src={record.imageUrl}
+                alt={record.name}
+                className="mx-auto h-60 max-w-md overflow-hidden rounded-lg"
+              />
+            </a>
+            <div className="mt-2 flex overflow-hidden">
+              <div className="overflow-hidden">
+                <div className="flex overflow-hidden">
+                  <p className="inline-block truncate font-medium">
+                    {record.name}
+                  </p>
+                  <Link
+                    className="mb-auto ml-3 text-sm font-bold text-gray-400 transition duration-150 ease-out hover:text-gray-500"
+                    to={`_edit_/${record.id}`}
+                    state={{ password }}
+                  >
+                    ...
+                  </Link>
                 </div>
-                {record.stage < 2 && (
+                <div>
                   <button
                     type="button"
-                    className="mb-1 ml-auto mt-auto rounded-lg px-2 py-1 font-medium text-blue-500 transition duration-150 ease-out hover:bg-blue-500 hover:text-white"
+                    className={`inline-block text-sm text-gray-500 ${
+                      record.stage === 1 && "animate-pulse"
+                    }`}
                     onClick={async (event) => {
                       event.preventDefault();
-                      await window.electron.updateRecord({
-                        ...record,
-                        stage: record.stage + 1,
-                      } as Record);
+                      if (record.stage < 2) {
+                        await window.electron.updateRecord({
+                          ...record,
+                          stage: record.stage + 1,
+                        } as Record);
+                      } else {
+                        await window.electron.updateRecord({
+                          ...record,
+                          stage: 0,
+                        } as Record);
+                      }
                       setRefresh((prev) => prev + 1);
                     }}
                   >
-                    {record.stage === 0 ? "Start" : "Done"}
+                    {whichStage(record.stage)}
                   </button>
-                )}
+                  <span className="ml-2 text-sm">
+                    {whichUpvote(record.upvote)}
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
-          <div className="flex flex-wrap gap-4">
-            <div
-              key="add"
-              className=" rounded border border-gray-100 p-3 px-4 text-center"
-            >
-              <Link to="_add_" state={{ password }}>
-                ➕
-              </Link>
+              {record.stage < 2 && (
+                <button
+                  type="button"
+                  className="mb-1 ml-auto mt-auto rounded-lg px-2 py-1 font-medium text-blue-500 transition duration-150 ease-out hover:bg-blue-500 hover:text-white"
+                  onClick={async (event) => {
+                    event.preventDefault();
+                    await window.electron.updateRecord({
+                      ...record,
+                      stage: record.stage + 1,
+                    } as Record);
+                    setRefresh((prev) => prev + 1);
+                  }}
+                >
+                  {record.stage === 0 ? "Start" : "Done"}
+                </button>
+              )}
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+        ))}
+      </Grid>
+    </Layout>
   );
 }
