@@ -1,5 +1,5 @@
 import React from "react";
-import { HiLockClosed, HiLockOpen } from "react-icons/hi";
+import { HiLockClosed, HiLockOpen, HiOutlineCog } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
 export default function Navbar({
@@ -38,7 +38,7 @@ export default function Navbar({
         to="/"
         className="ml-auto flex h-10 w-10 items-center justify-center rounded-lg border transition duration-150 ease-in-out hover:bg-gray-100"
       >
-        ⚙️
+        <HiOutlineCog className="text-xl" />
       </Link>
     </nav>
   );
