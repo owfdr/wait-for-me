@@ -19,6 +19,18 @@ export const rules: Required<ModuleOptions>["rules"] = [
     },
   },
   {
+    test: /\.(ico|png|jpe?g|gif)$/i,
+    use: [
+      {
+        loader: "file-loader",
+        options: {
+          name: "[name].[ext]",
+          outputPath: "assets",
+        },
+      },
+    ],
+  },
+  {
     test: /\.tsx?$/,
     exclude: /(node_modules|\.webpack)/,
     use: {
