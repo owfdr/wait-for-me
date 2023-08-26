@@ -6,7 +6,7 @@ Build and manage your personal collections.
 
 <img src="./assets/cover-image.png" alt="Cover Image" width="512">
 
-🧱 *This project is still under heavy development. The app may undergo many major changes.*
+🧱 *This project is still under heavy development. The app may undergo many significant changes.*
 
 ## Features
 
