@@ -1,9 +1,11 @@
 import React from "react";
+import { HiFolder, HiPlus } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
 import "../../assets/icon.png";
 import { Category } from "../class/Store";
 import Footer from "../ui/Footer";
+import Layout from "../ui/Layout";
 import Navbar from "../ui/Navbar";
 
 export default function categories() {
@@ -14,14 +16,14 @@ export default function categories() {
   });
 
   return (
-    <div className="h-screen bg-gray-50 text-gray-700">
-      <Navbar title="Categories" className="mb-10" />
+    <Layout title="Categories" to="/">
       <div className="mx-10 overflow-hidden rounded-lg shadow-sm">
         <div className="grid gap-px rounded-b-none bg-white sm:grid-cols-2 md:grid-cols-3">
           {categories.map((category) => (
             <Card key={category.id}>
               <Link to={category.id + "/records"} key={category.id}>
-                <div className="h-10 w-10 rounded bg-gray-100"></div>
+                <HiFolder className="flex h-10 w-10 items-center rounded border bg-gray-100 p-1 transition duration-150 ease-in-out hover:border-gray-500 group-hover:text-gray-900" />
+
                 <h2 className="mb-1 mt-3 line-clamp-1 font-medium text-gray-700 transition duration-150 ease-in-out group-hover:text-gray-900">
                   {category.name}
                 </h2>
@@ -43,14 +45,11 @@ export default function categories() {
         </div>
         <Link to="_add_">
           <div className="rounded-b-lg border-t border-gray-100 bg-white p-3 transition duration-150 ease-in-out hover:shadow">
-            <div className="text-center text-gray-700 transition duration-150 ease-in-out group-hover:text-gray-900">
-              ➕
-            </div>
+            <HiPlus className="mx-auto text-gray-700 transition duration-150 ease-in-out hover:text-gray-900" />
           </div>
         </Link>
       </div>
-      <Footer />
-    </div>
+    </Layout>
   );
 }
 
