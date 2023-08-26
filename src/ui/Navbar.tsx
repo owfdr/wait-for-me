@@ -1,14 +1,19 @@
 import React from "react";
+import { HiLockClosed, HiLockOpen } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
 export default function Navbar({
   className,
   title,
   to,
+  lock,
+  unlocked,
 }: {
   className?: string;
   title: string;
   to?: string;
+  lock?: boolean;
+  unlocked?: boolean;
 }) {
   return (
     <nav
@@ -23,8 +28,10 @@ export default function Navbar({
       </Link>
       <span>/</span>
       <Link to={to}>
-        <h1 className="inline-block text-2xl tracking-tight text-gray-700 transition duration-150 ease-in-out hover:text-gray-900">
-          {title}
+        <h1 className="flex items-center text-2xl tracking-tight text-gray-700 transition duration-150 ease-in-out hover:text-gray-900">
+          <span>{title}</span>
+          {(unlocked && <HiLockOpen className="ml-1 inline-block" />) ||
+            (lock && <HiLockClosed className="ml-1 inline-block" />)}
         </h1>
       </Link>
       <Link

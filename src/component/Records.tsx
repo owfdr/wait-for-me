@@ -96,14 +96,9 @@ export default function Records() {
 
   if (locked)
     return (
-      <div className="p-10">
-        <h1 className="mb-10 text-3xl">
-          <Link to="/">{category.name}</Link>
-          <span> 🔒</span>
-        </h1>
-
-        <div className="mx-auto max-w-sm pt-10">
-          <p className="mb-1 mt-10">Enter your Password to unlock:</p>
+      <Layout title={category.name} lock={!!password} to="/">
+        <div className="mx-auto mb-10 mt-20 max-w-sm">
+          <p className="m-1">Enter your Password to unlock:</p>
           <input
             type="password"
             className="w-full rounded border p-2"
@@ -114,11 +109,11 @@ export default function Records() {
             }}
           ></input>
         </div>
-      </div>
+      </Layout>
     );
 
   return (
-    <Layout title={category.name + (password && " 🔓")} to="/">
+    <Layout title={category.name} unlocked={!locked} to="/">
       {/* <div className="border-b flex">
         <input
           type="text"
