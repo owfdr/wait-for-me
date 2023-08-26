@@ -6,7 +6,7 @@ Build and manage your personal collections.
 
 <img src="./assets/cover-image.png" alt="Cover Image" width="512">
 
-🧱 *This project is still under heavy development. The app may undergo many significant changes.*
+🧱 _This project is still under heavy development. The app may undergo many significant changes._
 
 ## Features
 
@@ -20,13 +20,37 @@ And more!
 
 ### Mac
 
+<a href="#">
+    <img src="assets/macos.svg" alt="MacOS" width="80">
+</a>
+
 `Coming Soon!`
 
 ### Windows
 
+<a href="#">
+    <img src="assets/windows.svg" alt="Windows" width="80">
+</a>
+<a href="#">
+    <img src="assets/windows-arm64.svg" alt="Windows arm64" width="80">
+</a>
+
 `Coming Soon!`
 
 ### Linux
+
+<a href="#">
+    <img src="assets/debian.svg" alt="Debian" width="80">
+</a>
+<a href="#">
+    <img src="assets/debian-arm64.svg" alt="Debian arm64" width="80">
+</a>
+<a href="#">
+    <img src="assets/red-hat.svg" alt="Red Hat" width="80">
+</a>
+<a href="#">
+    <img src="assets/red-hat-arm64.svg" alt="Red Hat arm64" width="80">
+</a>
 
 `Coming Soon!`
 
