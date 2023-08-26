@@ -113,7 +113,7 @@ export default function Records() {
     );
 
   return (
-    <Layout title={category.name} unlocked={!locked} to="/">
+    <Layout title={category.name} unlocked={password && !locked} to="/">
       {/* <div className="border-b flex">
         <input
           type="text"
@@ -148,7 +148,7 @@ export default function Records() {
         </button>
       </div> */}
 
-      <Grid state={{ password }}>
+      <Grid wide state={{ password }}>
         {records.map((record) => (
           <div
             key={record.id}
@@ -169,7 +169,7 @@ export default function Records() {
               <img
                 src={record.imageUrl}
                 alt={record.name}
-                className="mx-auto h-60 max-w-md overflow-hidden rounded-lg"
+                className="mx-auto h-60 max-w-md overflow-hidden rounded-lg object-cover object-center"
               />
             </a>
             <div className="mt-2 flex overflow-hidden">

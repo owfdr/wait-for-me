@@ -17,8 +17,14 @@ export default function Layout({
   unlocked?: boolean;
 }) {
   return (
-    <div className="h-screen bg-gray-50 text-gray-700">
-      <Navbar title={title} lock={lock} unlocked={unlocked} to={to} className="mb-10" />
+    <div className="min-h-screen bg-gray-50 text-gray-700">
+      <Navbar
+        title={title}
+        lock={lock}
+        unlocked={unlocked}
+        to={to}
+        className="mb-10"
+      />
       {children}
       <Footer />
     </div>
