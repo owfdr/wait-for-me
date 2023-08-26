@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import "../../assets/icon.png";
 import { Category } from "../class/Store";
+import Footer from "../ui/Footer";
 import Navbar from "../ui/Navbar";
 
 export default function categories() {
@@ -48,9 +49,7 @@ export default function categories() {
           </div>
         </Link>
       </div>
-      <div className="mt-8 text-center text-xs text-gray-300">
-        {new Date().getFullYear()} Wait For Me
-      </div>
+      <Footer />
     </div>
   );
 }
