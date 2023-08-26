@@ -32,9 +32,15 @@ And more!
 
 ## Screenshots
 
+Managed under categories
+
 <img src="./assets/categories.png" alt="categories" width="512">
 
+Lock your collections
+
 <img src="./assets/journal.png" alt="jounal collections" width="512">
+
+Personal watchlist for YouTube
 
 <img src="./assets/youtube.png" alt="youtube collections" width="512">
 
