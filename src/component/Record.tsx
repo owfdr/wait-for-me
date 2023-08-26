@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { Category } from "../class/Store";
+import Layout from "../ui/Layout";
 
 export default function Record() {
   const { pathname, state } = useLocation();
@@ -50,147 +51,150 @@ export default function Record() {
   }, [name]);
 
   return (
-    <div className="mx-auto max-w-sm p-3 pt-10">
-      <h1 className="mb-10 text-3xl ">{isAdd ? "Add" : "Edit"} Record</h1>
+    <Layout title="Records" to="/">
+      <div className="mx-auto mt-10 max-w-md overflow-hidden rounded-lg bg-white p-5 shadow-sm">
+        <h1 className="mb-10 text-3xl ">{isAdd ? "Add" : "Edit"} Record</h1>
 
-      <form
-        onSubmit={async (event) => {
-          event.preventDefault();
-
-          if (isAdd) {
-            await window.electron.addRecord({
-              id: nanoid(),
-              name,
-              imageUrl,
-              sourceUrl,
-              stage,
-              note,
-              upvote,
-              tags: [],
-              categoryId: category.id,
-            });
-          } else {
-            await window.electron.updateRecord({
-              id,
-              name,
-              imageUrl,
-              sourceUrl,
-              stage,
-              note,
-              upvote,
-              tags: [],
-              categoryId: category.id,
-            });
-          }
-
-          navigate("/categories/" + category_id + "/records", {
-            state: { password },
-          });
-        }}
-        className="mx-auto flex max-w-xl flex-col gap-4 p-3"
-      >
-        <input
-          type="text"
-          placeholder="name"
-          className="block  p-3"
-          value={name}
-          onChange={(event) => {
-            setName(event.target.value);
-            setEdited(true);
-          }}
-        />
-        <input
-          type="text"
-          placeholder="sourceUrl"
-          className="block p-3"
-          value={sourceUrl}
-          onChange={(event) => {
-            setSourceUrl(event.target.value);
-            setEdited(true);
-          }}
-        />
-        <input
-          type="text"
-          placeholder="imageUrl"
-          className="block p-3"
-          value={imageUrl}
-          onChange={(event) => {
-            setImageUrl(event.target.value);
-            setEdited(true);
-          }}
-        />
-        <textarea
-          placeholder="note"
-          className="block p-3"
-          value={note}
-          onChange={(event) => {
-            setNote(event.target.value);
-            setEdited(true);
-          }}
-        />
-        <div className="flex gap-3 p-3 text-xl">
-          <label htmlFor="bad">
-            👎
-            <input
-              type="radio"
-              name="upvote"
-              value="-1"
-              id="bad"
-              checked={upvote === -1}
-              onChange={() => {
-                setUpvote(-1);
-                setEdited(true);
-              }}
-            />
-          </label>
-          <label htmlFor="good">
-            👍
-            <input
-              type="radio"
-              name="upvote"
-              value="1"
-              id="good"
-              checked={upvote === 1}
-              onChange={() => {
-                setUpvote(1);
-                setEdited(true);
-              }}
-            />
-          </label>
-        </div>
-
-        <button
-          type="submit"
-          disabled={!edited || isDuplicated || !name}
-          className="rounded bg-blue-500 p-3 text-white transition duration-150 ease-in-out hover:bg-blue-600 disabled:opacity-50 disabled:hover:bg-blue-500"
-        >
-          {isAdd ? "Add" : "Update"}
-        </button>
-        <Link
-          to={"/categories/" + category_id + "/records"}
-          state={{ password }}
-          className="block rounded bg-gray-300 p-3 text-center text-gray-700 transition duration-150 ease-in-out hover:bg-gray-400"
-        >
-          Cancel
-        </Link>
-
-        <button
-          type="submit"
-          hidden={isAdd}
-          className="mt-5  rounded border border-white p-3 text-red-500 duration-150 ease-in-out hover:border-red-600 disabled:opacity-50 disabled:hover:border-white"
-          onClick={async (event) => {
+        <form
+          onSubmit={async (event) => {
             event.preventDefault();
-            if (!window.confirm("Are you sure to delete this record?")) return;
 
-            await window.electron.deleteRecord(record_id);
+            if (isAdd) {
+              await window.electron.addRecord({
+                id: nanoid(),
+                name,
+                imageUrl,
+                sourceUrl,
+                stage,
+                note,
+                upvote,
+                tags: [],
+                categoryId: category.id,
+              });
+            } else {
+              await window.electron.updateRecord({
+                id,
+                name,
+                imageUrl,
+                sourceUrl,
+                stage,
+                note,
+                upvote,
+                tags: [],
+                categoryId: category.id,
+              });
+            }
+
             navigate("/categories/" + category_id + "/records", {
               state: { password },
             });
           }}
+          className="mx-auto flex max-w-xl flex-col gap-4 p-3"
         >
-          Delete
-        </button>
-      </form>
-    </div>
+          <input
+            type="text"
+            placeholder="name"
+            className="block rounded border p-3"
+            value={name}
+            onChange={(event) => {
+              setName(event.target.value);
+              setEdited(true);
+            }}
+          />
+          <input
+            type="text"
+            placeholder="sourceUrl"
+            className="block rounded border p-3"
+            value={sourceUrl}
+            onChange={(event) => {
+              setSourceUrl(event.target.value);
+              setEdited(true);
+            }}
+          />
+          <input
+            type="text"
+            placeholder="imageUrl"
+            className="block rounded border p-3"
+            value={imageUrl}
+            onChange={(event) => {
+              setImageUrl(event.target.value);
+              setEdited(true);
+            }}
+          />
+          <textarea
+            placeholder="note"
+            className="block rounded border p-3"
+            value={note}
+            onChange={(event) => {
+              setNote(event.target.value);
+              setEdited(true);
+            }}
+          />
+          <div className="flex gap-3 p-3 text-xl">
+            <label htmlFor="bad">
+              👎
+              <input
+                type="radio"
+                name="upvote"
+                value="-1"
+                id="bad"
+                checked={upvote === -1}
+                onChange={() => {
+                  setUpvote(-1);
+                  setEdited(true);
+                }}
+              />
+            </label>
+            <label htmlFor="good">
+              👍
+              <input
+                type="radio"
+                name="upvote"
+                value="1"
+                id="good"
+                checked={upvote === 1}
+                onChange={() => {
+                  setUpvote(1);
+                  setEdited(true);
+                }}
+              />
+            </label>
+          </div>
+
+          <button
+            type="submit"
+            disabled={!edited || isDuplicated || !name}
+            className="rounded bg-blue-500 p-3 text-white transition duration-150 ease-in-out hover:bg-blue-600 disabled:opacity-50 disabled:hover:bg-blue-500"
+          >
+            {isAdd ? "Add" : "Update"}
+          </button>
+          <Link
+            to={"/categories/" + category_id + "/records"}
+            state={{ password }}
+            className="block rounded bg-gray-300 p-3 text-center text-gray-700 transition duration-150 ease-in-out hover:bg-gray-400"
+          >
+            Cancel
+          </Link>
+
+          <button
+            type="submit"
+            hidden={isAdd}
+            className="mt-5  rounded border border-white p-3 text-red-500 duration-150 ease-in-out hover:border-red-600 disabled:opacity-50 disabled:hover:border-white"
+            onClick={async (event) => {
+              event.preventDefault();
+              if (!window.confirm("Are you sure to delete this record?"))
+                return;
+
+              await window.electron.deleteRecord(record_id);
+              navigate("/categories/" + category_id + "/records", {
+                state: { password },
+              });
+            }}
+          >
+            Delete
+          </button>
+        </form>
+      </div>
+    </Layout>
   );
 }

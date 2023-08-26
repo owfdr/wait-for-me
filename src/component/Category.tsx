@@ -43,7 +43,7 @@ export default function Category() {
 
   return (
     <Layout title="Categories" to="/">
-      <div className="mx-auto mt-10 max-w-md overflow-hidden rounded-lg  bg-white p-5 shadow-sm">
+      <div className="mx-auto mt-10 max-w-md overflow-hidden rounded-lg bg-white p-5 shadow-sm">
         <h1 className="mb-10 text-3xl ">{isAdd ? "Add" : "Edit"} Category</h1>
         <form
           className="flex flex-col gap-4"
