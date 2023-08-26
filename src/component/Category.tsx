@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
 import Layout from "../ui/Layout";
-import Navbar from "../ui/Navbar";
 
 export default function Category() {
   const { pathname } = useLocation();
@@ -14,6 +13,7 @@ export default function Category() {
 
   const [name, setName] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [description, setDescription] = React.useState("");
   const [edited, setEdited] = React.useState(false);
   const [isDuplicated, setIsDuplicated] = React.useState(false);
   const [safeToDelete, setSafeToDelete] = React.useState(false);
@@ -23,6 +23,7 @@ export default function Category() {
       window.electron.getCategory(category_id).then((category) => {
         setName(category.name);
         setPassword(category.password || "");
+        setDescription(category.description || "");
       });
 
       window.electron
@@ -55,12 +56,14 @@ export default function Category() {
                 id: nanoid(),
                 name,
                 password: password,
+                description,
               });
             } else {
               await window.electron.updateCategory({
                 id: category_id,
                 name,
                 password: password,
+                description,
               });
             }
 
@@ -90,6 +93,15 @@ export default function Category() {
               setEdited(true);
             }}
           />
+          <textarea
+            placeholder="description"
+            className="block rounded border p-3"
+            value={description}
+            onChange={(event) => {
+              setDescription(event.target.value);
+              setEdited(true);
+            }}
+          />
           <button
             type="submit"
             disabled={!edited || isDuplicated || !name}
@@ -104,7 +116,7 @@ export default function Category() {
             Cancel
           </Link>
           <button
-            className="mt-5  rounded border border-white p-3 text-red-500 duration-150 ease-in-out hover:border-red-600 disabled:opacity-50 disabled:hover:border-white"
+            className="mt-5 rounded border border-white p-3 text-red-500 duration-150 ease-in-out hover:border-red-600 disabled:opacity-50 disabled:hover:border-white"
             hidden={isAdd}
             disabled={!safeToDelete}
             onClick={async (event) => {

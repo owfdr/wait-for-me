@@ -6,6 +6,7 @@ export type Category = {
   id: string;
   name: string;
   password: string;
+  description: string;
 };
 
 export type Tag = {
@@ -39,12 +40,14 @@ export default class Store {
       id: nanoid(),
       name: "Book",
       password: "",
+      description: "Collection of my favorite books.",
     };
 
     const movie: Category = {
       id: nanoid(),
       name: "Movie",
       password: "",
+      description: "Collection of my favorite movies.",
     };
 
     const ThinkingFastAndSlow: Record = {

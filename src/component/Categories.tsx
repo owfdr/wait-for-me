@@ -29,10 +29,7 @@ export default function categories() {
                 )}
               </h2>
               <p className="line-clamp-2 text-sm text-gray-500 transition duration-150 ease-in-out group-hover:text-gray-700">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Tempore corporis explicabo assumenda fugiat consectetur nam quis
-                laboriosam, vitae quas eveniet a sapiente labore accusamus
-                accusantium voluptatum, debitis nihil aperiam omnis.
+                {category.description}
               </p>
             </Link>
             <Link
