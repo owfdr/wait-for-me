@@ -12,20 +12,37 @@ import { rendererConfig } from "./webpack.renderer.config";
 const config: ForgeConfig = {
   packagerConfig: {
     name: "Wait For Me",
-    icon: "./assets/icon.icon",
+    icon: "./assets/icon",
     appBundleId: "com.owfdr.wait-for-me",
+    executableName: "wait-for-me", // required for linux
     asar: true,
   },
   rebuildConfig: {},
   makers: [
     new MakerSquirrel({
+      iconUrl:
+        "https://raw.githubusercontent.com/owfdr/wait-for-me/main/assets/icon.ico",
       setupIcon: "./assets/icon.ico",
     }),
-    new MakerZIP({}, ["darwin"]),
-    new MakerRpm({}),
+    new MakerZIP({}, ["darwin", "win32"]),
+    new MakerRpm({
+      options: {
+        icon: "./assets/icon.png",
+        productName: "Wait For Me",
+        description: "Build your personal collections",
+        productDescription:
+          "Craft your own personal collections of your favorite shows, movies, articles, and more.",
+        categories: ["Utility"],
+      },
+    }),
     new MakerDeb({
       options: {
         icon: "./assets/icon.png",
+        productName: "Wait For Me",
+        description: "Build your personal collections",
+        productDescription:
+          "Craft your own personal collections of your favorite shows, movies, articles, and more.",
+        categories: ["Utility"],
       },
     }),
   ],
