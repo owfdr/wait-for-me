@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { Category } from "../class/Store";
@@ -8,6 +9,7 @@ import Layout from "../ui/Layout";
 export default function Record() {
   const { pathname, state } = useLocation();
   const { category_id, record_id } = useParams();
+  const { t } = useTranslation();
 
   const [category, setCategory] = React.useState<Partial<Category>>({});
 
@@ -51,9 +53,11 @@ export default function Record() {
   }, [name]);
 
   return (
-    <Layout title="Records" to="/">
+    <Layout title={category.name} to="/">
       <div className="mx-auto mt-10 max-w-md overflow-hidden rounded-lg bg-white p-5 shadow-sm">
-        <h1 className="mb-10 text-3xl ">{isAdd ? "Add" : "Edit"} Record</h1>
+        <h1 className="mb-10 text-3xl ">
+          {isAdd ? t("add-record") : t("edit-record")}
+        </h1>
 
         <form
           onSubmit={async (event) => {
@@ -93,7 +97,7 @@ export default function Record() {
         >
           <input
             type="text"
-            placeholder="name"
+            placeholder={t("name")}
             className="block rounded border p-3"
             value={name}
             onChange={(event) => {
@@ -103,7 +107,7 @@ export default function Record() {
           />
           <input
             type="text"
-            placeholder="sourceUrl"
+            placeholder={t("website-url-optional")}
             className="block rounded border p-3"
             value={sourceUrl}
             onChange={(event) => {
@@ -113,7 +117,7 @@ export default function Record() {
           />
           <input
             type="text"
-            placeholder="imageUrl"
+            placeholder={t("image-url-optional")}
             className="block rounded border p-3"
             value={imageUrl}
             onChange={(event) => {
@@ -122,7 +126,7 @@ export default function Record() {
             }}
           />
           <textarea
-            placeholder="note"
+            placeholder={t("note-optional")}
             className="block rounded border p-3"
             value={note}
             onChange={(event) => {
@@ -166,24 +170,23 @@ export default function Record() {
             disabled={!edited || isDuplicated || !name}
             className="rounded bg-blue-500 p-3 text-white transition duration-150 ease-in-out hover:bg-blue-600 disabled:opacity-50 disabled:hover:bg-blue-500"
           >
-            {isAdd ? "Add" : "Update"}
+            {isAdd ? t("add") : t("update")}
           </button>
           <Link
             to={"/categories/" + category_id + "/records"}
             state={{ password }}
             className="block rounded bg-gray-300 p-3 text-center text-gray-700 transition duration-150 ease-in-out hover:bg-gray-400"
           >
-            Cancel
+            {t("cancel")}
           </Link>
 
           <button
             type="submit"
             hidden={isAdd}
-            className="mt-5  rounded border border-white p-3 text-red-500 duration-150 ease-in-out hover:border-red-600 disabled:opacity-50 disabled:hover:border-white"
+            className="mt-5 rounded border border-white p-3 text-red-500 duration-150 ease-in-out hover:border-red-600 disabled:opacity-50 disabled:hover:border-white"
             onClick={async (event) => {
               event.preventDefault();
-              if (!window.confirm("Are you sure to delete this record?"))
-                return;
+              if (!window.confirm(t("sure-to-delete"))) return;
 
               await window.electron.deleteRecord(record_id);
               navigate("/categories/" + category_id + "/records", {

@@ -1,4 +1,5 @@
 import { BrowserWindow, app, ipcMain, shell } from "electron";
+import i18next from "i18next";
 
 import Store from "./class/Store";
 
@@ -9,6 +10,8 @@ declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 if (require("electron-squirrel-startup")) {
   app.quit();
 }
+
+i18next.init
 
 const store = new Store();
 

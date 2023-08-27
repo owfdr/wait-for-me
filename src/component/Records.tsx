@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useLocation, useParams } from "react-router-dom";
 
 import { Category, Record } from "../class/Store";
@@ -8,6 +9,7 @@ import Layout from "../ui/Layout";
 export default function Records() {
   const { state } = useLocation();
   const { category_id } = useParams();
+  const { t } = useTranslation();
 
   const [password, setPassword] = React.useState<string>("");
   const [locked, setLocked] = React.useState<boolean>(true);
@@ -69,13 +71,13 @@ export default function Records() {
   const whichStage = (stage: number) => {
     switch (stage) {
       case 0:
-        return "Not Watched";
+        return t("not-watched");
       case 1:
-        return "Watching";
+        return t("watching");
       case 2:
-        return "Watched";
+        return t("watched");
       default:
-        return "Not Watched";
+        return t("not-watched");
     }
   };
 
@@ -98,7 +100,7 @@ export default function Records() {
     return (
       <Layout title={category.name} lock={!!password} to="/">
         <div className="mx-auto mb-10 mt-20 max-w-sm">
-          <p className="m-1">Enter your Password to unlock:</p>
+          <p className="m-1">{t("enter-password-to-unlock")}</p>
           <input
             type="password"
             className="w-full rounded border p-2"
@@ -228,7 +230,7 @@ export default function Records() {
                     setRefresh((prev) => prev + 1);
                   }}
                 >
-                  {record.stage === 0 ? "Start" : "Done"}
+                  {record.stage === 0 ? t("start") : t("done")}
                 </button>
               )}
             </div>

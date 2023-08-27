@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
 import Layout from "../ui/Layout";
@@ -7,6 +8,7 @@ import Layout from "../ui/Layout";
 export default function Category() {
   const { pathname } = useLocation();
   const { category_id } = useParams();
+  const { t } = useTranslation();
 
   const isAdd = pathname.endsWith("_add_");
   const navigate = useNavigate();
@@ -43,9 +45,11 @@ export default function Category() {
   }, [name]);
 
   return (
-    <Layout title="Categories" to="/">
+    <Layout title={t("categories")} to="/">
       <div className="mx-auto mt-10 max-w-md overflow-hidden rounded-lg bg-white p-5 shadow-sm">
-        <h1 className="mb-10 text-3xl ">{isAdd ? "Add" : "Edit"} Category</h1>
+        <h1 className="mb-10 text-3xl ">
+          {isAdd ? t("add-category") : t("edit-category")}
+        </h1>
         <form
           className="flex flex-col gap-4"
           onSubmit={async (event) => {
@@ -72,7 +76,7 @@ export default function Category() {
         >
           <input
             type="text"
-            placeholder="name"
+            placeholder={t("name")}
             className="block rounded border p-3"
             value={name}
             onChange={(event) => {
@@ -85,7 +89,7 @@ export default function Category() {
           </p>
           <input
             type="password"
-            placeholder="password (optional)"
+            placeholder={t("password-optional")}
             className="block rounded border p-3"
             value={password}
             onChange={(event) => {
@@ -94,7 +98,7 @@ export default function Category() {
             }}
           />
           <textarea
-            placeholder="description"
+            placeholder={t("description-optional")}
             className="block rounded border p-3"
             value={description}
             onChange={(event) => {
@@ -107,13 +111,13 @@ export default function Category() {
             disabled={!edited || isDuplicated || !name}
             className="rounded bg-blue-500 p-3 text-white transition duration-150 ease-in-out hover:bg-blue-600 disabled:opacity-50 disabled:hover:bg-blue-500"
           >
-            {isAdd ? "Add" : "Update"}
+            {isAdd ? t("add") : t("update")}
           </button>
           <Link
             to="/categories"
             className="block rounded bg-gray-300 p-3 text-center text-gray-700 transition duration-150 ease-in-out hover:bg-gray-400"
           >
-            Cancel
+            {t("cancel")}
           </Link>
           <button
             className="mt-5 rounded border border-white p-3 text-red-500 duration-150 ease-in-out hover:border-red-600 disabled:opacity-50 disabled:hover:border-white"
@@ -127,11 +131,11 @@ export default function Category() {
               }
             }}
           >
-            Delete
+            {t("delete")}
           </button>
           <p className="text-center text-sm text-red-300" hidden={isAdd}>
             {!safeToDelete &&
-              "You must remove all the records before deleting it"}
+              t("must-remove-all")}
           </p>
         </form>
       </div>

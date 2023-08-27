@@ -1,4 +1,4 @@
-import { ipcMain } from "electron";
+import { app, ipcMain } from "electron";
 import ElectronStore from "electron-store";
 import { nanoid } from "nanoid";
 
@@ -36,18 +36,60 @@ export default class Store {
   }
 
   init() {
+    const locale = (() => {
+      switch (app.getLocaleCountryCode()) {
+        case "en":
+          return "en";
+        case "zh":
+          return "zh";
+        case "ja":
+          return "ja";
+        case "ko":
+          return "ko";
+        default:
+          return "en";
+      }
+    })();
+
+    const translations = {
+      book: {
+        en: "Book",
+        zh: "书籍",
+        ja: "書籍",
+        ko: "책",
+      },
+      bookDescription: {
+        en: "Collection of my favorite books.",
+        zh: "我最喜欢的书籍收藏。",
+        ja: "私の好きな書籍のコレクション。",
+        ko: "내가 좋아하는 책 모음.",
+      },
+      movie: {
+        en: "Movie",
+        zh: "电影",
+        ja: "映画",
+        ko: "영화",
+      },
+      movieDescription: {
+        en: "Collection of my favorite movies.",
+        zh: "我最喜欢的电影收藏。",
+        ja: "私の好きな映画のコレクション。",
+        ko: "내가 좋아하는 영화 모음.",
+      },
+    };
+
     const book: Category = {
       id: nanoid(),
-      name: "Book",
+      name: translations.book[locale],
       password: "",
-      description: "Collection of my favorite books.",
+      description: translations.bookDescription[locale],
     };
 
     const movie: Category = {
       id: nanoid(),
-      name: "Movie",
+      name: translations.movie[locale],
       password: "",
-      description: "Collection of my favorite movies.",
+      description: translations.movieDescription[locale],
     };
 
     const ThinkingFastAndSlow: Record = {

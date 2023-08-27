@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { BiCategory } from "react-icons/bi";
 import { HiLockClosed } from "react-icons/hi";
 import { Link } from "react-router-dom";
@@ -11,12 +12,14 @@ import Layout from "../ui/Layout";
 export default function categories() {
   const [categories, setCategories] = React.useState([] as Category[]);
 
+  const { t } = useTranslation();
+
   React.useEffect(() => {
     window.electron.getCategories().then(setCategories);
   });
 
   return (
-    <Layout title="Categories" to="/">
+    <Layout title={t("categories")} to="/">
       <Grid>
         {categories.map((category) => (
           <Card key={category.id}>
