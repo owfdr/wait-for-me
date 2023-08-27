@@ -12,7 +12,8 @@
     "make:linux": "electron-forge make --platform=linux --arch=x64,arm64",
     "make:windows": "electron-forge make --platform=win32 --arch=x64,arm64",
     "publish": "electron-forge publish",
-    "lint": "eslint --ext .ts,.tsx ."
+    "lint": "eslint --ext .ts,.tsx .",
+    "release": "standard-version"
   },
   "keywords": [],
   "author": {
@@ -48,6 +49,7 @@
     "postcss-loader": "^7.3.3",
     "prettier": "^3.0.2",
     "prettier-plugin-tailwindcss": "^0.5.3",
+    "standard-version": "^9.5.0",
     "style-loader": "^3.3.3",
     "tailwindcss": "^3.3.3",
     "ts-loader": "^9.2.2",
