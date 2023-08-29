@@ -2,6 +2,8 @@ import React from "react";
 import { HiLockClosed, HiLockOpen, HiOutlineCog } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
+import "../../assets/icon.png";
+
 export default function Navbar({
   className,
   title,

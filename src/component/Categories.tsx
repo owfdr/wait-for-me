@@ -4,7 +4,6 @@ import { BiCategory } from "react-icons/bi";
 import { HiLockClosed } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
-import "../../assets/icon.png";
 import { Category } from "../class/Store";
 import Grid from "../ui/Grid";
 import Layout from "../ui/Layout";
