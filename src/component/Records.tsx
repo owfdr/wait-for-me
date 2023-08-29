@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation, useParams } from "react-router-dom";
 
+import "../../assets/white-background.jpg";
 import { Category, Record } from "../class/Store";
 import Grid from "../ui/Grid";
 import Layout from "../ui/Layout";
@@ -165,11 +166,11 @@ export default function Records() {
               className="block overflow-hidden rounded-lg transition duration-150 ease-in-out hover:shadow-md"
               onClick={(event) => {
                 event.preventDefault();
-                window.electron.openUrl(record.sourceUrl);
+                record.sourceUrl && window.electron.openUrl(record.sourceUrl);
               }}
             >
               <img
-                src={record.imageUrl}
+                src={record.imageUrl || "assets/white-background.jpg"}
                 alt={record.name}
                 className="mx-auto h-60 max-w-md overflow-hidden rounded-lg object-cover object-center"
               />
