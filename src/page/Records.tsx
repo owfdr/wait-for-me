@@ -221,7 +221,7 @@ export default function Records() {
               {record.stage < 2 && (
                 <button
                   type="button"
-                  className="mb-1 ml-auto mt-auto rounded-lg px-2 py-1 font-medium text-blue-500 transition duration-150 ease-out hover:bg-blue-500 hover:text-white"
+                  className="mb-1 ml-auto mt-auto shrink-0 rounded-lg px-2 py-1 font-medium text-blue-500 transition duration-150 ease-out hover:bg-blue-500 hover:text-white"
                   onClick={async (event) => {
                     event.preventDefault();
                     await window.electron.updateRecord({
