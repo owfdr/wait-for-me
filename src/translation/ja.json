@@ -24,5 +24,8 @@
   "watched": "任務終了",
   "enter-password-to-unlock": "ロックを解除するにはパスワードを入力してください：",
   "start": "開始",
-  "done": "完了"
+  "done": "完了",
+  "_____________4_____________": "",
+  "settings": "設定",
+  "still-under-development": "この機能はまだ開発中です"
 }

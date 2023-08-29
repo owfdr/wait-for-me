@@ -24,5 +24,8 @@
   "watched": "Watched",
   "enter-password-to-unlock": "Enter your Password to unlock:",
   "start": "Start",
-  "done": "Done"
+  "done": "Done",
+  "_____________4_____________": "",
+  "settings": "Settings",
+  "still-under-development": "This feature is still under heavy development"
 }

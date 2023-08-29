@@ -5,6 +5,7 @@ import Categories from "../page/Categories";
 import Category from "../page/Category";
 import Record from "../page/Record";
 import Records from "../page/Records";
+import Settings from "../page/Settings";
 
 export default class Router {
   static createHash() {
@@ -16,6 +17,10 @@ export default class Router {
       {
         path: "/main_window",
         loader: () => redirect("/categories"),
+      },
+      {
+        path: "/settings",
+        element: React.createElement(Settings),
       },
       {
         path: "/categories",
