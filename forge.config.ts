@@ -5,6 +5,8 @@ import { MakerZIP } from "@electron-forge/maker-zip";
 import { AutoUnpackNativesPlugin } from "@electron-forge/plugin-auto-unpack-natives";
 import { WebpackPlugin } from "@electron-forge/plugin-webpack";
 import type { ForgeConfig } from "@electron-forge/shared-types";
+import cpy from "cpy";
+import path from "path";
 
 import { mainConfig } from "./webpack.main.config";
 import { rendererConfig } from "./webpack.renderer.config";
@@ -46,6 +48,14 @@ const config: ForgeConfig = {
       },
     }),
   ],
+  hooks: {
+    packageAfterExtract: async () => {
+      await cpy(
+        [path.resolve(__dirname, ".webpack/renderer/assets")],
+        path.resolve(__dirname, ".webpack/renderer/main_window/assets"),
+      );
+    },
+  },
   plugins: [
     new AutoUnpackNativesPlugin({}),
     new WebpackPlugin({
