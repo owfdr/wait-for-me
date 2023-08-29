@@ -22,39 +22,33 @@
 
 ### Mac
 
-<a href="#">
+<a href="https://github.com/owfdr/wait-for-me/releases/download/v0.1.0/Wait.For.Me-darwin-universal-0.1.0.zip">
     <img src="assets/macos.svg" alt="MacOS" width="80">
 </a>
 
-`近日公開！`
-
 ### Windows
 
-<a href="#">
+<a href="https://github.com/owfdr/wait-for-me/releases/download/v0.1.0/Wait.For.Me-win32-x64-0.1.0.zip">
     <img src="assets/windows.svg" alt="Windows" width="80">
 </a>
-<a href="#">
+<a href="https://github.com/owfdr/wait-for-me/releases/download/v0.1.0/Wait.For.Me-win32-arm64-0.1.0.zip">
     <img src="assets/windows-arm64.svg" alt="Windows arm64" width="80">
 </a>
 
-`近日公開！`
-
 ### Linux
 
-<a href="#">
+<a href="https://github.com/owfdr/wait-for-me/releases/download/v0.1.0/wait-for-me_0.1.0_amd64.deb">
     <img src="assets/debian.svg" alt="Debian" width="80">
 </a>
-<a href="#">
+<a href="https://github.com/owfdr/wait-for-me/releases/download/v0.1.0/wait-for-me_0.1.0_arm64.deb">
     <img src="assets/debian-arm64.svg" alt="Debian arm64" width="80">
 </a>
-<a href="#">
+<a href="https://github.com/owfdr/wait-for-me/releases/download/v0.1.0/wait-for-me-0.1.0-1.x86_64.rpm">
     <img src="assets/red-hat.svg" alt="Red Hat" width="80">
 </a>
-<a href="#">
+<a href="https://github.com/owfdr/wait-for-me/releases/download/v0.1.0/wait-for-me-0.1.0-1.arm64.rpm">
     <img src="assets/red-hat-arm64.svg" alt="Red Hat arm64" width="80">
 </a>
-
-`近日公開！`
 
 ## スクリーンショット
 
