@@ -14,6 +14,7 @@ export default function Records() {
 
   const [password, setPassword] = React.useState<string>("");
   const [locked, setLocked] = React.useState<boolean>(true);
+  const [fetched, setFetched] = React.useState<boolean>(false);
 
   const [category, setCategory] = React.useState<Partial<Category>>({});
   const [records, setRecords] = React.useState<Record[]>([]);
@@ -35,6 +36,8 @@ export default function Records() {
 
       setCategory(category);
       window.electron.getRecordsByCategory(category_id).then(setRecords);
+
+      setFetched(true);
     });
   }, []);
 
@@ -95,7 +98,12 @@ export default function Records() {
     }
   };
 
-  if (!category) return <div />;
+  if (!category || !fetched)
+    return (
+      <Layout title={category.name} lock={!!password} to="/">
+        <div></div>
+      </Layout>
+    );
 
   if (locked)
     return (
