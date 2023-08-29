@@ -23,8 +23,8 @@ export default function Grid({
         {children}
       </div>
       <Link to="_add_" state={state}>
-        <div className="rounded-b-lg border-t border-gray-100 bg-white p-3 transition duration-150 ease-in-out hover:shadow">
-          <HiPlus className="mx-auto text-gray-700 transition duration-150 ease-in-out hover:text-gray-900" />
+        <div className="group rounded-b-lg border-t border-gray-100 bg-white p-3 transition duration-150 ease-in-out hover:shadow">
+          <HiPlus className="mx-auto text-gray-500 transition duration-150 ease-in-out group-hover:text-gray-800" />
         </div>
       </Link>
     </div>
