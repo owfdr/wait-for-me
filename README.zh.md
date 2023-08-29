@@ -4,21 +4,21 @@
 
 # Wait For Me
 
-Build and manage your personal collections.
+专属于你的个人收藏。
 
-<img src="./assets/cover-image.png" alt="Cover Image" width="512">
+<img src="./assets/cover-image.zh.png" alt="Cover Image" width="512">
 
-🧱 _This project is still under heavy development. The app may undergo many significant changes._
+🧱 _此项目仍在大规模开发中。应用程序可能会经历很多重大变化。_
 
-## Features
+## 功能
 
-- Craft your own personal collections
-- Add links and custom images
-- Create a watchlist for your favorite shows
+- 打造自己的个人收藏
+- 添加链接和自定义图片
+- 为您喜欢的节目创建观看列表
 
-And more!
+还有更多！
 
-## Download
+## 下载
 
 ### Mac
 
@@ -26,7 +26,7 @@ And more!
     <img src="assets/macos.svg" alt="MacOS" width="80">
 </a>
 
-`Coming Soon!`
+`近期发布！`
 
 ### Windows
 
@@ -37,7 +37,7 @@ And more!
     <img src="assets/windows-arm64.svg" alt="Windows arm64" width="80">
 </a>
 
-`Coming Soon!`
+`近期发布！`
 
 ### Linux
 
@@ -54,24 +54,24 @@ And more!
     <img src="assets/red-hat-arm64.svg" alt="Red Hat arm64" width="80">
 </a>
 
-`Coming Soon!`
+`近期发布！`
 
-## Screenshots
+## 截图
 
-Managed under categories
+按分类进行管理
 
-<img src="./assets/categories.png" alt="categories" width="512">
+<img src="./assets/categories.zh.png" alt="categories" width="512">
 
-Lock your collections
+锁定您的收藏
 
-<img src="./assets/journal.png" alt="jounal collections" width="512">
+<img src="./assets/journal.zh.png" alt="jounal collections" width="512">
 
-Personal watchlist for YouTube
+个人观看列表
 
-<img src="./assets/youtube.png" alt="youtube collections" width="512">
+<img src="./assets/youtube.zh.png" alt="youtube collections" width="512">
 
-## 🧑‍💻 Other Apps
+## 🧑‍💻 其他应用
 
-Check out:
+请查看:
 
-- [Our World](https://ourworld.center/apps) (Official Website)
+- [Our World](https://ourworld.center/zh/apps) (官方网站)
